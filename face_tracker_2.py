@@ -220,7 +220,7 @@ while True:
         if avg_ear < EYE_AR_THRESH:
             EYE_COUNTER += 1
             if EYE_COUNTER >= EYE_AR_CONSEC_FRAMES and not EYES_CLOSED_ALERT_TRIGGERED:
-                EYES_CLOSED_DISPLAY_UNTIL = time.time() + ALERT_DURATION_SECONDS
+                EYES_CLOSED_DISPLAY_UNTIL = time.time() + 2.0
                 logger.warning("Prolonged eye closure detected!")
                 EYES_CLOSED_ALERT_TRIGGERED = True
                 CUMULATIVE_DROWSINESS_COUNT += 1
@@ -230,7 +230,7 @@ while True:
         if mouth_opening > MOUTH_OPEN_THRESH:
             MOUTH_COUNTER += 1
             if MOUTH_COUNTER >= MOUTH_OPEN_CONSEC_FRAMES and not YAWN_ALERT_TRIGGERED:
-                YAWN_DISPLAY_UNTIL = time.time() + ALERT_DURATION_SECONDS
+                YAWN_DISPLAY_UNTIL = time.time() + 2.0
                 logger.warning("Yawn detected!")
                 YAWN_ALERT_TRIGGERED = True
                 CUMULATIVE_YAWN_COUNT += 1
@@ -238,7 +238,7 @@ while True:
             MOUTH_COUNTER, YAWN_ALERT_TRIGGERED = 0, False
 
         if (CUMULATIVE_DROWSINESS_COUNT > DROWSINESS_COUNT_THRESH or CUMULATIVE_YAWN_COUNT > YAWN_COUNT_THRESH) and not TAKE_BREAK_ALERT_TRIGGERED:
-            TAKE_BREAK_DISPLAY_UNTIL = time.time() + ALERT_DURATION_SECONDS
+            TAKE_BREAK_DISPLAY_UNTIL = time.time() + 2.0
             logger.warning("Critical fatigue detected! Advising driver to take a break.")
             TAKE_BREAK_ALERT_TRIGGERED = True
 
@@ -248,7 +248,7 @@ while True:
             if abs(yaw) > YAW_THRESH_DEGREES:
                 YAW_COUNTER += 1
                 if YAW_COUNTER >= YAW_CONSEC_FRAMES and not YAW_ALERT_TRIGGERED:
-                    YAW_DISPLAY_UNTIL = time.time() + ALERT_DURATION_SECONDS
+                    YAW_DISPLAY_UNTIL = time.time() + 2.0
                     logger.warning(f"Head turned sideways! Yaw: {yaw:.2f}")
                     YAW_ALERT_TRIGGERED = True
             else:
@@ -258,7 +258,7 @@ while True:
                 if abs(roll) > ROLL_THRESH_DEGREES or abs(pitch) > PITCH_THRESH_DEGREES:
                     POSTURE_COUNTER += 1
                     if POSTURE_COUNTER >= ROLL_CONSEC_FRAMES and not POSTURE_ALERT_TRIGGERED:
-                        POSTURE_DISPLAY_UNTIL = time.time() + ALERT_DURATION_SECONDS
+                        POSTURE_DISPLAY_UNTIL = time.time() + 2.0
                         logger.warning(f"Head tilt! Roll: {roll:.2f}, Pitch: {pitch:.2f}")
                         POSTURE_ALERT_TRIGGERED = True
                 else:
@@ -341,7 +341,7 @@ while True:
         if is_eyes_covered:
             EYES_COVERED_COUNTER += 1
             if EYES_COVERED_COUNTER >= EYES_COVERED_CONSEC_FRAMES and not EYES_COVERED_ALERT_TRIGGERED:
-                EYES_COVERED_DISPLAY_UNTIL = time.time() + ALERT_DURATION_SECONDS
+                EYES_COVERED_DISPLAY_UNTIL = time.time() + 2.0
                 logger.warning("Eyes covered detected!")
                 EYES_COVERED_ALERT_TRIGGERED = True
         else:
@@ -350,7 +350,7 @@ while True:
         if is_mouth_covered:
             MOUTH_COVERED_COUNTER += 1
             if MOUTH_COUNTER >= MOUTH_COVERED_CONSEC_FRAMES and not MOUTH_COVERED_ALERT_TRIGGERED:
-                MOUTH_COVERED_DISPLAY_UNTIL = time.time() + ALERT_DURATION_SECONDS
+                MOUTH_COVERED_DISPLAY_UNTIL = time.time() + 2.0
                 logger.warning("Mouth covered detected!")
                 MOUTH_COVERED_ALERT_TRIGGERED = True
         else:
@@ -359,7 +359,7 @@ while True:
         if is_phone_gesture:
             PHONE_GESTURE_COUNTER += 1
             if PHONE_GESTURE_COUNTER >= PHONE_GESTURE_CONSEC_FRAMES and not PHONE_GESTURE_ALERT_TRIGGERED:
-                PHONE_GESTURE_DISPLAY_UNTIL = time.time() + ALERT_DURATION_SECONDS
+                PHONE_GESTURE_DISPLAY_UNTIL = time.time() + 2.0
                 logger.warning("Phone gesture detected!")
                 PHONE_GESTURE_ALERT_TRIGGERED = True
         else:
